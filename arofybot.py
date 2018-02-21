@@ -56,6 +56,8 @@ def handle_updates(updates):
             items = db.get_items(chat)
             keyboard = build_keyboard(items)
             send_message("Select an item to delete", chat, keyboard)
+        elif text == "/about":
+            send_message("Arofy's personal assistant", chat)
         else:
             db.add_item(text, chat)
             items = db.get_items(chat)
