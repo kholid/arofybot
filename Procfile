@@ -1,1 +1,1 @@
-web: python arofybot.py
+bot: python arofybot.py
