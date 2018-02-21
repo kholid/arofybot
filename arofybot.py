@@ -4,12 +4,10 @@ import time
 import urllib
 import os
 
-#import config
 from dbhelper import DBHelper
 
 db = DBHelper()
 
-#TOKEN = "493361673:AAH54EparefXUDq5qPcnbKm80ZqeRn07efI"
 TOKEN = os.environ['TELEGRAM_TOKEN']
 URL = "https://api.telegram.org/bot{}/".format(TOKEN)
 
@@ -50,7 +48,9 @@ def handle_updates(updates):
             keyboard = build_keyboard(items)
             send_message("Select an item to delete", chat, keyboard)
         elif text == "/start":
-            send_message("Welcome to your personal To Do list. Send any text to me and I'll store it as an item. Send /done to remove items", chat)
+            send_message("Welcome to your personal Assistant. Send any text to me and I'll store it as an item. Send /done to remove items", chat)
+        elif text == "/about":
+            send_message("Arofy's personal assistant", chat)
         elif text.startswith("/"):
             continue
         elif text in items:
@@ -58,8 +58,6 @@ def handle_updates(updates):
             items = db.get_items(chat)
             keyboard = build_keyboard(items)
             send_message("Select an item to delete", chat, keyboard)
-        elif text == "/about":
-            send_message("Arofy's personal assistant", chat)
         else:
             db.add_item(text, chat)
             items = db.get_items(chat)
