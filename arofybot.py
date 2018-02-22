@@ -6,7 +6,10 @@ from dbhelper import DBHelper
 
 
 db = DBHelper()
-TOKEN = os.environ['TELEGRAM_TOKEN']
+if ("TELEGRAM_TOKEN" in os.environ):
+    TOKEN = os.environ['TELEGRAM_TOKEN']
+else:
+    TOKEN = "493361673:AAH54EparefXUDq5qPcnbKm80ZqeRn07efI"
 
 
 def start(bot, update):
@@ -25,15 +28,8 @@ def help(bot, update):
 
 
 def echo(bot, update):
-    chat_id = update.message.chat_id
     text = update.message.text
-    bot.send_message(chat_id, text)
-
-
-def unknown(bot, update):
-    chat_id = update.message.chat_id
-    text = "can't understand your command, maybe Bot need to study more :D"
-    bot.send_message(chat_id, text)
+    update.message.reply_text(text)
 
 
 def outcome(bot, update, args):
@@ -42,13 +38,13 @@ def outcome(bot, update, args):
     amount = args[0]
     db.add_outcome(amount, chat_id)
     text = "\n".join(outlist)
-    bot.send_message(text, chat_id)
+    update.message.reply_text(text)
 
 
 def totalOutcome(bot, update):
     chat_id = update.message.chat_id
     totalOut = db.get_total_outcome(chat_id)
-    bot.send_message(totalOut, chat_id)
+    update.message.reply_text(totalOut)
 
 
 def askLocation(bot, update):
@@ -57,7 +53,12 @@ def askLocation(bot, update):
     con = KeyboardButton(text="Send Contact", request_contact=True)
     custom_keyboard = [[loc, con]]
     reply_markup = ReplyKeyboardMarkup(custom_keyboard)
-    bot.send_message(text, reply_markup=reply_markup)
+    update.message.reply_text(text, reply_markup=reply_markup)
+
+
+def unknown(bot, update):
+    text = "can't understand your command, maybe Bot need to study more :D"
+    update.message.reply_text(text)
 
 
 start_handler = CommandHandler('start', start)
