@@ -8,10 +8,10 @@ class DBHelper:
         self.conn = sqlite3.connect(dbname)
 
     def setup(self):
-        tblstmt = "CREATE TABLE IF NOT EXISTS outcome (amount number, owner text)"
+        stmt = "CREATE TABLE IF NOT EXISTS outcome (amount number, owner text)"
         outidx = "CREATE INDEX IF NOT EXISTS outcomeIndex ON outcome (amount ASC)"
         ownidx = "CREATE INDEX IF NOT EXISTS ownIndex ON outcome (owner ASC)"
-        self.conn.execute(tblstmt)
+        self.conn.execute(stmt)
         self.conn.execute(outidx)
         self.conn.execute(ownidx)
         self.conn.commit()
