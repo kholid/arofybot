@@ -9,7 +9,7 @@ class DBHelper:
 
     def setup(self):
         stmt = "CREATE TABLE IF NOT EXISTS outcome (amount number, owner text)"
-        outidx = "CREATE INDEX IF NOT EXISTS outcomeIndex ON outcome (amount ASC)"
+        outidx = "CREATE INDEX IF NOT EXISTS outIndex ON outcome (amount ASC)"
         ownidx = "CREATE INDEX IF NOT EXISTS ownIndex ON outcome (owner ASC)"
         self.conn.execute(stmt)
         self.conn.execute(outidx)
