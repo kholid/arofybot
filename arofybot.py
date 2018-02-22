@@ -1,6 +1,6 @@
 import os
 
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, StringCommandHandler
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from telegram import ReplyKeyboardMarkup, KeyboardButton
 from dbhelper import DBHelper
 
@@ -60,11 +60,11 @@ def askLocation(bot, update):
     bot.send_message(text, reply_markup=reply_markup)
 
 
-start_handler = StringCommandHandler('start', start)
-help_handler = StringCommandHandler('help', help)
-outcome_handler = StringCommandHandler('outcome', outcome, pass_args=True)
-total_handler = StringCommandHandler('totalOutcome', totalOutcome)
-location_handler = StringCommandHandler('askLocation', askLocation)
+start_handler = CommandHandler('start', start)
+help_handler = CommandHandler('help', help)
+outcome_handler = CommandHandler('outcome', outcome, pass_args=True)
+total_handler = CommandHandler('totalOutcome', totalOutcome)
+location_handler = CommandHandler('askLocation', askLocation)
 echo_handler = MessageHandler(Filters.text, echo)
 unknown_handler = MessageHandler(Filters.command, unknown)
 
