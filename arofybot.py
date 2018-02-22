@@ -77,10 +77,10 @@ def main():
     dispatcher.add_handler(start_handler)
     dispatcher.add_handler(help_handler)
     dispatcher.add_handler(echo_handler)
-    dispatcher.add_handler(unknown_handler)
     dispatcher.add_handler(outcome_handler)
     dispatcher.add_handler(total_handler)
     dispatcher.add_handler(location_handler)
+    dispatcher.add_handler(unknown_handler)
 
     updater.start_polling()
 
