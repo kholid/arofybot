@@ -1,7 +1,7 @@
 import os
 
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
-from telegram import replykeyboardmarkup, keyboardbutton
+from telegram import ReplyKeyboardMarkup, KeyboardButton
 from dbhelper import DBHelper
 
 
@@ -51,10 +51,10 @@ def totalOutcome(bot, update):
 
 def askLocation(bot, update):
     text = "would you mind sharing your location?"
-    loc = keyboardbutton(text="Send Location", request_location=True)
-    con = keyboardbutton(text="Send Contact", request_contact=True)
+    loc = KeyboardButton(text="Send Location", request_location=True)
+    con = KeyboardButton(text="Send Contact", request_contact=True)
     custom_keyboard = [[loc, con]]
-    reply_markup = replykeyboardmarkup(custom_keyboard)
+    reply_markup = ReplyKeyboardMarkup(custom_keyboard)
     bot.send_message(text, reply_markup=reply_markup)
 
 
