@@ -19,6 +19,8 @@ def help(bot, update):
     text += "\n\n/start - standard bot first command"
     text += "\n/help - asking bot what he can do"
     text += "\n/outcome <number> - list your outcome"
+    text += "\n/totalOutcome - sum all your outcome"
+    text += "\n/askLocation - asking your location"
     update.message.reply_text(text)
 
 
@@ -61,10 +63,10 @@ def askLocation(bot, update):
 start_handler = CommandHandler('start', start)
 help_handler = CommandHandler('help', help)
 echo_handler = MessageHandler(Filters.text, echo)
-unknown_handler = MessageHandler(Filters.command, unknown)
 outcome_handler = CommandHandler('outcome', outcome, pass_args=True)
 total_handler = CommandHandler('totalOutcome', totalOutcome)
 location_handler = CommandHandler('askLocation', askLocation)
+unknown_handler = MessageHandler(Filters.command, unknown)
 
 
 def main():
